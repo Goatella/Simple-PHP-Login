@@ -50,7 +50,7 @@
 
  // makes sure they filled it in
 
- 	if(!$_POST['username'] | !$_POST['pass']) {
+ 	if(!$_POST['username'] || !$_POST['pass']) {
 
  		die('You did not fill in a required field.');
 
