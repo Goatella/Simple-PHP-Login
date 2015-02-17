@@ -49,7 +49,7 @@ while($info = mysql_fetch_array( $check )){
 
 	//gives error if the password is wrong
  	if ($_POST['pass'] != $info['password']){
- 		die('Incorrect password, please <a href="login/">try again</a>.');
+ 		die('Incorrect password, please <a href="login.php">try again</a>.');
  	}
 	
 	else{ // if login is ok then we add a cookie 
