@@ -33,7 +33,18 @@ if(isset($_COOKIE['ID_your_site'])){ //if there is, it logs you in and directes 
  		$_POST['email'] = addslashes($_POST['email']);
  	}
 
- 	$check = mysqli_query($conect, "SELECT * FROM users WHERE username = '".$_POST['username']."'")or die(mysql_error());
+	$query ='SELECT * FROM users WHERE username =?';
+	$stmt=mysqli_prepare($conect,$query);
+	if(!$stmt->prepare($query))
+	{
+		die('Failed to prepare the statement');
+	}
+	else
+	{
+		$stmt->bind_param("s", $_POST['username']);
+		$stmt->execute();
+		$check = $stmt->get_result();
+	}
 
  //Gives error if user dosen't exist
  $check2 = mysqli_num_rows($check);
